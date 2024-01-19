@@ -1,2 +1,2 @@
 # boscmanual
-An Unoffical Manual Template for BOSC
+An Unoffical Manual Template for BOSC 👀
