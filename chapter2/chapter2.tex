@@ -1,0 +1,48 @@
+
+\chapter{插入图片、表格和代码}
+\section{插入图片}
+
+\section{插图表格}
+\begin{itemize}
+    \item 小表格，使用基本三线表格
+%\begin{table}[!htbp]
+%    \begin{center}
+%    \caption{Fitness of the three formations for the Huskies}
+%    \begin{tabular}{cccc}
+%        \toprule
+%        Formation  & Coordination & Flexibility & Pressing\\
+%        \midrule
+%        \textsf{4-3-3}	&5.1043	&32.42	&42.37\\
+%        \textsf{4-4-2}	&6.0104	&40.88	&43.58\\
+%        \textsf{5-3-2}	&7.5032	&23.50	&49.67\\
+%        \bottomrule
+%    \end{tabular}\label{tb:Fitness_formations}
+%    \end{center}
+%\end{table}
+
+    \item 大表格
+\end{itemize}
+\section{插入代码}
+\begin{itemize}
+    \item 大块代码插入
+    \lstinputlisting[
+        style       =   C++,
+        caption     =   {\bf test.cpp},
+        label       =   {test.cpp}
+    ]{chapter2/src/test.cpp}
+    \item 少量代码插入
+    \begin{lstlisting}{language=python}
+    def factorial(n):
+    """Calculate the factorial of a number."""
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print("Factorial of 5:", factorial(5))
+\end{lstlisting}
+\end{itemize}
+
+% chapter reference
+\bibliographystyle{IEEEtran}
+\bibliography{chapter2/references}

@@ -1,0 +1,45 @@
+%!TEX program = xelatex
+
+\documentclass{boscmanual}
+\usepackage[sectionbib]{chapterbib}
+
+\includeonly{
+    preface/preface,
+    chapter1/chapter1,
+    chapter2/chapter2,
+}
+
+\begin{document}
+\frontmatter
+\titlepage%
+    {BOSC手册模版} % chinese name
+    {A Manual Template for BOSC} % english name
+    {BOSC Team} % au
+    {BOSC Team}
+
+\titlecontents{chapter}[0pt]{\vspace{0.2cm}\bfseries\large}
+    {\thecontentslabel\hspace{0.5em}}{}{\hfill\contentspage}
+
+\titlecontents{section}[1.5em]{\vspace{0.2cm}}
+    {\contentslabel{1.5em}\hspace{0.5em}}{}{\titlerule*[0.5pc]{.}\contentspage}
+
+
+\include{preface/preface}
+
+\tableofcontents
+
+
+
+\listoffigures
+\listoftables
+\mainmatter
+
+\part{基础使用}
+\include{chapter1/chapter1}
+\include{chapter2/chapter2}
+
+\backmatter
+\chapter{附录}
+
+
+\end{document}
