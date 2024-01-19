@@ -16,7 +16,8 @@
   twoside,
   openany,
   scheme = plain,
-  fontset = none
+  fontset = none,
+  12pt
 }{ctexbook}
 \LoadClass{ctexbook}
 
