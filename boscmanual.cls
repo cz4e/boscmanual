@@ -133,7 +133,7 @@
   \end{minipage}
   \vfill
   \begin{center}
-      \zihao{4}\textbf{文档状态：\color{red}草稿/已审校/已冻结/已发布} \\
+      \zihao{4}\textbf{文档状态：\color{red}草稿/已审校/已冻结/已发布/已废弃} \\
       \vspace{1ex}
       \zihao{4}\textbf{最近修改时间：\color{red}{2024/01/19}}
   \end{center}
