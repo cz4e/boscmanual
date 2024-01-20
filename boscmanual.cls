@@ -19,7 +19,9 @@
   fontset = none,
   12pt
 }{ctexbook}
+
 \LoadClass{ctexbook}
+
 
 % ==============================================================================
 % Preliminary declarations
@@ -37,10 +39,24 @@
 \RequirePackage[many]{tcolorbox}
 \RequirePackage{indentfirst}
 \RequirePackage{titletoc}
+\RequirePackage{enumitem} 
+\RequirePackage{xhfill}
+\RequirePackage{etoolbox}
+\RequirePackage{nameref}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{amssymb}
+\RequirePackage{kvoptions}
 
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{2}
+\SetupKeyvalOptions{family=bosc, prefix=bosc@, setkeys=\kvsetkeys}
+
+
 \setlength{\parindent}{2em}
+
+% ==============================================================================
+% Color
+% ==============================================================================
+\definecolor{titlecolor}{RGB}{0,0,0} % {41, 94, 163}
+\definecolor{notecolor}{RGB}{255,17,0}
 
 % ==============================================================================
 % Font
@@ -76,6 +92,15 @@
 % ==============================================================================
 % Options
 % ==============================================================================
+\DeclareStringOption[zh]{lang}
+\DeclareStringOption[BOSC手册模版]{titlenamezh}
+\DeclareStringOption[A Manual Template for BOSC]{titlenameen}
+\DeclareStringOption[This is a note]{note}
+\DeclareStringOption[BOSC Team]{author}
+\DeclareStringOption[BOSC Team]{reviewer}
+\DeclareStringOption[草稿]{state}
+\DeclareStringOption[2024/01/19]{date}
+\ProcessKeyvalOptions*\relax
 
 % ==============================================================================
 % Layouts and geometry
@@ -94,28 +119,14 @@
 % ==============================================================================
 % Title page layout
 % ==============================================================================
-\newcommand{\titlename}[2]{
-    %中文书名
-    {\zihao{2}\textbf{#1}\selectfont}
-    \rule{\linewidth}{1.5pt} \\
-    \vspace{2ex}
-    %% 英文书名
-    {\zihao{1}\textsf{#2}}
-}
+\newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand{\reviewer}[1]{\gdef\@reviewer{#1}}
+\newcommand{\note}[1]{\gdef\@note{#1}}
+\newcommand{\docstate}[1]{\gdef\@docstate{#1}}
+\newcommand{\openright}[1]{\gdef\@openright{#1}}
 
-\newcommand{\titleauthor}[1]{
-    {\zihao{4}\textsf{#1}~\textbf{编著}}
-}
-
-\newcommand{\reviewname}[1]{
-    {\zihao{4}\textsf{#1}~\textbf{审校}}
-}
-
-\newcommand{\titlenote}[1]{
-    {\zihao{4}{\color{red}\textbf{Note: }}\textsf{#1}}
-}
-
-\renewcommand{\titlepage}[4]{
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
   \ifodd\c@page\else\thispagestyle{empty}\null\newpage\fi
   \begin{flushright}
   \includegraphics[width=0.25\textwidth]{logo/bosc_logo.jpeg}
@@ -123,20 +134,23 @@
   \vspace*{5ex}
   \hspace{0.05\textwidth}\begin{minipage}{.9\textwidth}
     \begin{flushleft}
-    \titlename{#1}{#2} \\
+    {\zihao{2}{\color{titlecolor}\textbf{\@title}}} 
+    \color{titlecolor}\rule{\linewidth}{1.5pt} \\
+    \vspace{2ex}
+    {\zihao{1}\color{titlecolor}\textsf{\@subtitle}} \\
     \vspace{15ex}
-    \titleauthor{#3} \\
+    {\zihao{4}\color{titlecolor}\textsf{\@author}~\textbf{编著}} \\
     \vspace{1ex}
-    \reviewname{#4} \\
+    {\zihao{4}\color{titlecolor}\textsf{\@reviewer}~\textbf{审校}} \\
     \vspace{15ex}
-    \titlenote{This is a note}
+    {\zihao{4}{\color{notecolor}\textbf{Note: }}\color{black}\textsf{\@note}}
     \end{flushleft}
   \end{minipage}
   \vfill
   \begin{center}
-      \zihao{4}\textbf{文档状态：\color{red}草稿/已审校/已冻结/已发布/已废弃} \\
+      \zihao{4}\textbf{文档状态：\color{red}\@docstate} \\
       \vspace{1ex}
-      \zihao{4}\textbf{最近修改时间：\color{red}{2024/01/19}}
+      \zihao{4}\textbf{最近修改时间：\color{red}{\@date}}
   \end{center}
   \vspace{1ex}
   \begin{center}
@@ -146,19 +160,36 @@
   \begin{center}
       \zihao{4}BEIJING
   \end{center}
-  \thispagestyle{empty}
   \newpage
-}
-
-
-\newenvironment{openright}{
-  \vspace*{70ex}
-  \raggedright{\zihao{3}\textbf{通知及免责声明}\selectfont}\\
+  \begin{flushleft}
+  \vspace*{\fill}
+  \textbf{Copyright Notice} \\
+  \vspace{1cm}
+  \textit\@openright \\
+  \vspace{1cm}
+  \normalsize\textcopyright\ 2024 Your Name \\
+  All rights reserved. \\
+  \vspace*{\fill}
+  \end{flushleft}
   \thispagestyle{empty}
-  \zihao{4}
-}{
-  \newpage
-}
+\end{titlepage}
+\restoregeometry
+\thispagestyle{empty}}
+
+% ==============================================================================
+% Tableofcontents layout
+% ==============================================================================
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\titlecontents{chapter}[0pt]{\vspace{0.2cm}\bfseries\large}
+    {\thecontentslabel\hspace{0.5em}}{}{\hfill\contentspage}
+
+\titlecontents{section}[1.5em]{\vspace{0.2cm}}
+    {\contentslabel{1.5em}\hspace{0.5em}}{}{\titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{subsection}[1.5em]{\vspace{0.2cm}}
+    {\contentslabel{1.5em}\hspace{2.5em}}{}{\titlerule*[0.5pc]{.}\contentspage}
 
 % ==============================================================================
 % Head and foot layout
@@ -188,8 +219,12 @@
   \hrule width \hsize height .5pt
 } % label
 {1ex} % sep
-{\vspace{-7ex}\flushright\zihao{2}} % before-code
+{
+  \ifodd\c@page\else\thispagestyle{empty}\null\newpage\fi
+  \vspace{-7ex}\flushright\zihao{2}
+} % before-code
 [\vspace{1ex}]
+
 \CTEXsetup[name={第,部分},number={\chinese{part}},format={\zihao{-4}\bfseries\raggedright}]{part}
 % ==============================================================================
 % Chapter
@@ -198,6 +233,7 @@
 [display] % shape
 {\bfseries} % format
 {
+  \ifodd\c@page\else\thispagestyle{empty}\null\newpage\fi
   \flushright\zihao{4}第\zhnum{chapter}章
 } % label
 {1ex} % sep
@@ -229,7 +265,6 @@
 {1pt}
 {\zihao{4}\bfseries\filright}[]
 
-  
 \renewcommand{\contentsname}{目\hspace{1em}录}
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
@@ -239,10 +274,6 @@
 \renewcommand{\bibname}{参考文献}
 \renewcommand{\appendixname}{附\hspace{1em}录}
 \renewcommand{\indexname}{索\hspace{1em}引}
-% listings
-\renewcommand{\lstlistingname}{代码}
-\renewcommand{\lstlistlistingname}{\lstlistingname 列表}
-
 
 % ==============================================================================
 % Message box
