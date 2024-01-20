@@ -64,6 +64,8 @@
 \setCJKmainfont{SimSun}
 \setCJKmonofont{SimSun}
 \setmainfont{Times New Roman}
+\setsansfont{DejaVu Sans}
+\setmonofont{Consolas}
 \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
 \setCJKsansfont{FZHei-B01}
 \setCJKmonofont{FZFangSong-Z02}
