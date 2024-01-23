@@ -1,46 +1,68 @@
 
 \chapter{模版设置说明}
 正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正正
+
 \section{语言设置}
+    \lipsum[1]
 
 \section{封面设置}
+    \lipsum[1]
 
 \section{目录选项}
+    \lipsum[1]
 
 \section{章节标题}
+    % 中文
+    \subsection*{\zihao{-4}\textit{\textbf{这是地址}}}
+    \zhlipsum[1]
+
+    % 英文
+    \subsection*{\zihao{5}\textbf{Address[4 : 0]}}
+    \lipsum[1]\\
+    Wrap order is defined as follows:
+          \begin{lstlisting}
+Start_Address = Addr;
+Number_Bytes = 2^size;
+INT(x) = Rounded down integer value of x
+Aligned_Address = (INT(Start_Address / Number_Bytes)) x Number_Bytes 
+Lower_Wrap_Boundary = Aligned_Address
+Upper_Wrap_Boundary = Aligned_Address + Number_Bytes - 1
+          \end{lstlisting}
+    \lipsum[1]
+    \begin{enumerate}
+      \item This is the first item with indentation.
+      \item This is the second item with indentation.
+      \begin{enumerate}
+          \item Wrap order is defined as follows:
+          \begin{lstlisting}
+Start_Address = Addr;
+Number_Bytes = 2^size;
+INT(x) = Rounded down integer value of x
+Aligned_Address = (INT(Start_Address / Number_Bytes)) x Number_Bytes 
+Lower_Wrap_Boundary = Aligned_Address
+Upper_Wrap_Boundary = Aligned_Address + Number_Bytes - 1
+          \end{lstlisting}
+      \end{enumerate}
+    \end{enumerate}
 
 \section{插入设置}
-\subsection{图片}
-\subsection{表格}
+    \lipsum[1]
 
-\begin{itemize}
-    \item 小表格，使用基本三线表格
-%\begin{table}[!htbp]
-%    \begin{center}
-%    \caption{Fitness of the three formations for the Huskies}
-%    \begin{tabular}{cccc}
-%        \toprule
-%        Formation  & Coordination & Flexibility & Pressing\\
-%        \midrule
-%        \textsf{4-3-3}	&5.1043	&32.42	&42.37\\
-%        \textsf{4-4-2}	&6.0104	&40.88	&43.58\\
-%        \textsf{5-3-2}	&7.5032	&23.50	&49.67\\
-%        \bottomrule
-%    \end{tabular}\label{tb:Fitness_formations}
-%    \end{center}
-%\end{table}
+\section{图片}
+    \lipsum[1]
 
-    \item 大表格
-\end{itemize}
+\section{表格}
 
-\subsection{代码}
+
+    
+\section{代码}
 \begin{itemize}
     \item 大块代码插入
     \lstinputlisting[
-        style       =   C++,
-        caption     =   {\bf test.cpp},
-        label       =   {test.cpp}
-    ]{chapter2/src/test.cpp}
+        style       =   Python,
+        caption     =   {\bf mul.scala},
+        label       =   {mul.scala}
+    ]{chapter2/src/mul.scala}
     \item 少量代码插入
     \begin{lstlisting}[language={[LaTeX]TeX}]
     begin{lstlisting}[language=python]
@@ -55,8 +77,9 @@
     end{lstlisting}
     \end{lstlisting}
 \end{itemize}
-\subsection{消息框}
 
+
+\section{消息框}
 \begin{info}
     额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息额外信息
 \end{info}
@@ -73,8 +96,11 @@
     不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做不能这样做
 \end{ban}
 
-\subsection{引用}
-\subsection{参考文献}
+
+\section{引用}
+    \lipsum[1]
+\section{参考文献}
+    \lipsum[1]
 
 % chapter reference
 \bibliographystyle{IEEEtran}

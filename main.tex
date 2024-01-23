@@ -1,0 +1,60 @@
+%!TEX program = xelatex
+
+\documentclass[lang=zh]{boscmanual}
+\usepackage[sectionbib]{chapterbib}
+\usepackage{lipsum}
+\usepackage{zhlipsum}
+
+% ==============================================================================
+% Title information
+% ==============================================================================
+\title{BOSC手册模版}
+\subtitle{An Unofficial Manual Template for BOSC}
+\author{BOSC Team}
+\reviewer{BOSC Team}
+\note{This is a note!}
+\docstate{草稿} % 草稿/已审校/已冻结/已发布/已废弃
+\date{2024/01/19}
+\openright{% 
+    Your openright here!
+}
+
+% 
+\includeonly{
+    preface/main,
+    chapter1/main,
+    chapter2/main,
+    chapter3/main,
+}
+
+\begin{document}
+
+% ==============================================================================
+% Title page
+% ==============================================================================
+\maketitle
+
+\frontmatter
+
+
+\include{preface/main}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+% ==============================================================================
+% Chapters
+% ==============================================================================
+\part{模版介绍}
+\include{chapter1/main}
+\include{chapter2/main}
+\include{chapter3/main}
+
+\backmatter
+\chapter{附录}
+
+
+\end{document}
