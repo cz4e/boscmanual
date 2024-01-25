@@ -19,6 +19,9 @@
     % 英文
     \subsection*{\zihao{5}\textbf{Address[4 : 0]}}
     \lipsum[1]\\
+
+    \subsection*{\zihao{5}\textbf{Coherence Interface Hub}}
+    \lipsum[1]\\
     Wrap order is defined as follows:
           \begin{lstlisting}
 Start_Address = Addr;
@@ -50,10 +53,25 @@ Upper_Wrap_Boundary = Aligned_Address + Number_Bytes - 1
 
 \section{图片}
     \lipsum[1]
-
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\textwidth]{chapter1/figures/bosc_logo.jpeg}
+        \label{fig:my_label}
+        \caption{BOCS exmaple}
+    \end{figure}
 \section{表格}
 
-
+\begin{table}[h]
+\centering
+\caption{\color{maincolor} \bf 示例表格}
+\begin{tabular}{|l|c|r|}
+\hline
+左对齐 & 居中 & 右对齐 \\ \hline
+单元格1 & 单元格2 & 单元格3 \\ 
+单元格4 & 单元格5 & 单元格6 \\ \hline
+\end{tabular}
+\label{tab:example}
+\end{table}
     
 \section{代码}
 \begin{itemize}

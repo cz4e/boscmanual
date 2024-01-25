@@ -48,6 +48,7 @@
 \RequirePackage{changepage}
 \RequirePackage{booktabs}
 \RequirePackage{ragged2e}
+\RequirePackage{caption}
 \SetupKeyvalOptions{family=bosc, prefix=bosc@, setkeys=\kvsetkeys}
 
 \setlength{\parindent}{2em}
@@ -161,7 +162,7 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   \newpage
   \begin{flushleft}
   \vspace*{\fill}
-  \textbf{Copyright Notice} \\
+  \textbf{Openright Notice} \\
   \vspace{1cm}
   \textit\@openright \\
   \vspace{1cm}
@@ -348,16 +349,20 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 % ==============================================================================
 % Code style
 % ==============================================================================
+\DeclareCaptionFormat{lablestyle}{\color{maincolor}\bf #1#2#3}
+\captionsetup[lstlisting]{format=lablestyle,labelfont=bf,singlelinecheck=off,labelsep=space,justification=centering}
+\renewcommand{\lstlistingname}{代码}
+
 \lstset{
   basicstyle=\ttfamily,
   frame=tb,
   framerule=.5pt,
-  rulecolor=\color{black},
+  rulecolor=\color{maincolor},
   abovecaptionskip=0pt,
   belowcaptionskip=5pt,
   commentstyle=\color{gray},
   keywordstyle=\color{blue},
-  numberstyle=\small\color{gray},
+  numberstyle=\small\color{maincolor},
   stringstyle=\color{red},
   breakatwhitespace=false,
   breaklines=true,
@@ -380,12 +385,12 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   basicstyle=\ttfamily,
   frame=tb,
   framerule=.5pt,
-  rulecolor=\color{black},
+  rulecolor=\color{maincolor},
   abovecaptionskip=0pt,
   belowcaptionskip=5pt,
   commentstyle=\color{gray},
   keywordstyle=\color{blue},
-  numberstyle=\small\color{gray},
+  numberstyle=\small\color{maincolor},
   stringstyle=\color{red},
   morekeywords={False, None, True, and, as, assert, async, await, break, class, continue, def, del, elif, else, except, False, finally, for, from, global, if, import, in, is, lambda, nonlocal, not, or, pass, raise, return, True, try, while, with, yield},
   breakatwhitespace=false,
@@ -410,12 +415,12 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   basicstyle=\ttfamily,
   frame=tb,
   framerule=.5pt,
-  rulecolor=\color{black},
+  rulecolor=\color{maincolor},
   abovecaptionskip=0pt,
   belowcaptionskip=5pt,
   commentstyle=\color{gray},
   keywordstyle=\color{blue},
-  numberstyle=\small\color{gray},
+  numberstyle=\small\color{maincolor},
   stringstyle=\color{red},
   morekeywords={alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool, break, case, catch, char, char8_t, char16_t, char32_t, class, compl, concept, const, consteval, constexpr, const_cast, continue, co_await, co_return, co_yield, decltype, default, delete, do, double, dynamic_cast, else, enum, explicit, export, extern, false, float, for, friend, goto, if, inline, int, long, mutable, namespace, new, noexcept, not, not_eq, nullptr, operator, or, or_eq, private, protected, public, register, reinterpret_cast, requires, return, short, signed, sizeof, static, static_assert, static_cast, struct, switch, template, this, thread_local, throw, true, try, typedef, typeid, typename, union, unsigned, using, virtual, void, volatile, wchar_t, while, xor, xor_eq
 },
@@ -440,12 +445,12 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   basicstyle=\ttfamily,
   frame=tb,
   framerule=.5pt,
-  rulecolor=\color{black},
+  rulecolor=\color{maincolor},
   abovecaptionskip=0pt,
   belowcaptionskip=5pt,
   commentstyle=\color{gray},
   keywordstyle=\color{blue},
-  numberstyle=\small\color{gray},
+  numberstyle=\small\color{maincolor},
   stringstyle=\color{red},
   morekeywords={abstract, case, catch, class, def, do, else, extends, false, final, finally, for, if, implicit, import, match, new, null, object, override, package, private, protected, return, sealed, super, this, throw, trait, try, true, type, val, var, while, with, yield},
   breakatwhitespace=false,
@@ -472,6 +477,8 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 \setlist[enumerate,3]{left=4em..6em,label=\roman*.}
 \setlist[enumerate,4]{left=6em..8em,label=\Alph*.}
 
+
+
 % ==============================================================================
 % Ref style
 % ==============================================================================
@@ -481,3 +488,18 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   urlcolor=black,      % 设置URL颜色为红色
   citecolor=black    % 设置引用颜色为绿色
 }
+
+% ==============================================================================
+% Figure style
+% ==============================================================================
+\captionsetup[figure]{format=lablestyle,labelfont=bf,singlelinecheck=off,labelsep=space,justification=centering}
+
+% ==============================================================================
+% Table style
+% ==============================================================================
+\captionsetup[table]{format=lablestyle,labelfont=bf,singlelinecheck=off,labelsep=space,justification=centering}
+
+% ==============================================================================
+% Global parameters
+% ==============================================================================
+\setlength{\parindent}{0pt}
