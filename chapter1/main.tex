@@ -1,18 +1,24 @@
-
-\chapter{模版介绍}
-    \lipsum[1]
-
-\section{模版安装}
-    \lipsum[1]
+\chapter{这是什么}
+这是个人使用的用于编写手册的LaTex模版。
 
 \section{在线使用模版}
-    \lipsum[1]
+可以使用texpage和overleaf在线导入(https://github.com/cz4e/boscmanual)或者手动导入，编译器选择XeLaTex。
 
 \section{本地安装使用}
-    \lipsum[1]\cite{adve1996shared}
+DYOR，编译器选择XeLaTex。
 
-\section{模版更新}
-    \lipsum[1]
+\section{模版文件介绍}
+\begin{itemize}
+    \item boscmaunal.cls: 模版类型文件，文件包含特定模版类型的格式和模版规范。
+    \item main.tex: 主文件。
+    \item logo: 模版logo目录。
+    \item fonts: 模版字体目录。
+    \item preface: 前言目录。
+    \item chapter: 章节目录，其中包括用于章节主文件、引用文件、源代码目录和图片目录。
+\end{itemize}
+
+\section{模版编写简要教程}
+手册每一章拥有独立目录（chapter1，chapter2，...），每一章的内容写在main.tex，引用写在references.bib中。编写完成后需要在模版主文件中添加对应章节的主文件。例如在includeonly中添加charpter1/main，并在对应位置添加include\{chapter1/main\}
 
 % chapter reference
 \bibliographystyle{IEEEtran}

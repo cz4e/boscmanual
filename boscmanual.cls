@@ -3,7 +3,7 @@
 % ==============================================================================
 \NeedsTeXFormat{LaTeX2e}
 \newcommand\version{0.0.1}
-\newcommand\versiondate{2024-01-18}
+\newcommand\versiondate{2024-07-28}
 \ProvidesClass{boscmanual}[%
   \versiondate\space%
   v\version\space%
@@ -20,7 +20,6 @@
 }{ctexbook}
 
 \LoadClass{ctexbook}
-
 
 % ==============================================================================
 % Preliminary declarations
@@ -51,21 +50,16 @@
 \RequirePackage{caption}
 \SetupKeyvalOptions{family=bosc, prefix=bosc@, setkeys=\kvsetkeys}
 
-\setlength{\parindent}{2em}
-
-% ==============================================================================
-% Color
-% ==============================================================================
-\definecolor{maincolor}{RGB}{41, 94, 163}
-\definecolor{notecolor}{RGB}{41, 94, 163}
-
 % ==============================================================================
 % Font
 % ==============================================================================
 \setCJKmainfont{SimSun}
 \setCJKmonofont{SimSun}
-\setmainfont{NeoSansPro-Regular.ttf}[BoldFont=NeoSansPro-Bold.otf, ItalicFont=NeoSansPro-Italic.otf,
-BoldItalicFont=NeoSansPro-BoldItalic.otf]
+\setmainfont[Path=fonts/]{NeoSansPro-Regular.ttf}[
+    BoldFont=NeoSansPro-Bold.otf,
+    ItalicFont=NeoSansPro-Italic.otf, 
+    BoldItalicFont=NeoSansPro-BoldItalic.otf
+]
 \setsansfont{DejaVu Sans}
 \setmonofont{Consolas}
 
@@ -98,13 +92,6 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 % Options
 % ==============================================================================
 \DeclareStringOption[zh]{lang}
-\DeclareStringOption[BOSC手册模版]{titlenamezh}
-\DeclareStringOption[A Manual Template for BOSC]{titlenameen}
-\DeclareStringOption[This is a note]{note}
-\DeclareStringOption[BOSC Team]{author}
-\DeclareStringOption[BOSC Team]{reviewer}
-\DeclareStringOption[草稿]{state}
-\DeclareStringOption[2024/01/19]{date}
 \ProcessKeyvalOptions*\relax
 
 % ==============================================================================
@@ -131,28 +118,37 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 \newcommand{\docstate}[1]{\gdef\@docstate{#1}}
 \newcommand{\openright}[1]{\gdef\@openright{#1}}
 
+\definecolor{maincolor}{RGB}{41, 94, 163}
+\definecolor{notecolor}{RGB}{41, 94, 163}
+
 \renewcommand*{\maketitle}{%
 \begin{titlepage}
   \ifodd\c@page\else\thispagestyle{empty}\null\newpage\fi
+
+  %% 设置logo
   \begin{flushright}
   \includegraphics[width=0.25\textwidth]{logo/bosc_logo.jpeg}
   \end{flushright}
   \vspace*{5ex}
+  
+  %% 设置标题
   \hspace{0.05\textwidth}\begin{minipage}{.9\textwidth}
     \begin{flushright}
-    {\zihao{2}{\color{maincolor}\textbf{\@title}}} 
+    {\zihao{1}{\color{maincolor}\textbf{\@title}}} %% 中文标题
     \color{maincolor}\rule{\linewidth}{1.5pt} \\
     \vspace{2ex}
-    {\zihao{1}\color{maincolor}\textsf{\@subtitle}} \\
+    {\zihao{2}\color{maincolor}\textsf{\@subtitle}} \\ %% 英文标题
     \vspace{15ex}
-    {\zihao{4}\color{maincolor}\textsf{\@author}~\textbf{编著}} \\
+    {\zihao{4}\color{maincolor}\textsf{\@author}~\textbf{编著}} \\ %% 作者
     \vspace{1ex}
-    {\zihao{4}\color{maincolor}\textsf{\@reviewer}~\textbf{审校}} \\
+    {\zihao{4}\color{maincolor}\textsf{\@reviewer}~\textbf{审校}} \\ %% 审校人员
     \vspace{10ex}
-    {\zihao{4}\color{maincolor}\textbf{文档状态：}\color{red}\textbf{\@docstate}} \\
+    {\zihao{4}\color{maincolor}\textbf{文档状态：}\color{red}\textbf{\@docstate}} \\ %% 设置文档状态
     \vspace{2ex}
-    {\zihao{4}\color{maincolor}\textbf{最近修改时间：}\color{red}\textbf{\@date}}        
+    {\zihao{4}\color{maincolor}\textbf{最近修改时间：}\color{red}\textbf{\@date}}  %% 设置最近修改时间 
     \end{flushright}
+
+    %% 设置提示
     \begin{flushleft}
     \vspace{15ex}
     {\zihao{4}{\color{notecolor}\textbf{Note: }}\color{black}\textsf{\@note}}
@@ -160,13 +156,15 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
   \end{minipage}
   \vfill
   \newpage
+
+  %% 设置权利页
   \begin{flushleft}
   \vspace*{\fill}
   \textbf{Openright Notice} \\
   \vspace{1cm}
   \textit\@openright \\
   \vspace{1cm}
-  \normalsize\textcopyright\ 2024 Your Name \\
+  \normalsize\textcopyright\ 2024 BOSC \\
   All rights reserved. \\
   \vspace*{\fill}
   \end{flushleft}
@@ -174,6 +172,23 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 \end{titlepage}
 \restoregeometry
 \thispagestyle{empty}}
+
+
+% ==============================================================================
+% Head and foot layout
+% ==============================================================================
+\pagestyle{fancy}
+\fancyhf{} % clean old layout
+
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{.5pt}
+\futurelet\TMPfootrule\def\footrule{{\color{maincolor}\TMPfootrule}}
+
+\renewcommand{\chaptermark}[1]{\markboth{第\zhnum{chapter}章\hspace{1em}#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\fancyfoot[LE]{\thepage\quad\vrule\quad\color{maincolor}\leftmark}
+\fancyfoot[RO]{\color{maincolor}\leftmark\quad\vrule\quad\thepage}
 
 % ==============================================================================
 % Tableofcontents layout
@@ -194,21 +209,6 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 \titlecontents{subsection}[1.5em]{\vspace{0.2cm}\color{maincolor}}
     {\contentslabel{1.5em}\hspace{2.5em}}{}{\titlerule*[0.5pc]{.}\contentspage}
 
-% ==============================================================================
-% Head and foot layout
-% ==============================================================================
-\pagestyle{fancy}
-\fancyhf{} % clean old layout
-
-\renewcommand\headrulewidth{0pt}
-\renewcommand\footrulewidth{.5pt}
-\futurelet\TMPfootrule\def\footrule{{\color{maincolor}\TMPfootrule}}
-
-\renewcommand{\chaptermark}[1]{\markboth{第\zhnum{chapter}章\hspace{1em}#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-
-\fancyfoot[LE]{\thepage\quad\vrule\quad\color{maincolor}\leftmark}
-\fancyfoot[RO]{\color{maincolor}\leftmark\quad\vrule\quad\thepage}
 
 % ==============================================================================
 % Part
@@ -277,6 +277,7 @@ BoldItalicFont=NeoSansPro-BoldItalic.otf]
 \renewcommand{\bibname}{参考文献}
 \renewcommand{\appendixname}{附\hspace{1em}录}
 \renewcommand{\indexname}{索\hspace{1em}引}
+
 
 % ==============================================================================
 % Message box
